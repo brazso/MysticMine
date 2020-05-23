@@ -338,6 +338,7 @@ class MonorailGame:
                 elif self.ingame_menu.should_quit:
                     self.music_man.stop()
                     self.state = MonorailGame.STATE_QUIT
+                    pygame.quit()
                 elif self.ingame_menu.to_next_level:
                     self.music_man.stop()
                     self.state = MonorailGame.STATE_DONE
@@ -487,8 +488,8 @@ class MonorailEditor:
     def update_edit_tiles( self ):
         mouse_x, mouse_y = pygame.mouse.get_pos()
 
-        pos = Vec3D((-mouse_y + (mouse_x+32)/2 - MonorailEditor.X_OFFSET/2 + MonorailEditor.Y_OFFSET) / 32,
-    	            (mouse_y + (mouse_x-32)/2 - MonorailEditor.X_OFFSET/2 - MonorailEditor.Y_OFFSET) / 32,
+        pos = Vec3D((-mouse_y + (mouse_x+32)//2 - MonorailEditor.X_OFFSET//2 + MonorailEditor.Y_OFFSET) // 32,
+    	            (mouse_y + (mouse_x-32)//2 - MonorailEditor.X_OFFSET//2 - MonorailEditor.Y_OFFSET) // 32,
                      0)
 
         if self.current_tile == MonorailEditor.FLAT:

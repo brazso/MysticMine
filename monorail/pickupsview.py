@@ -189,7 +189,7 @@ class DynamiteView (PickupView):
             self.move = Vec2D( random.uniform( -2.5, 2.5 ), random.uniform( -2.5, 0.0 ) )
             self.surf = resman.get("game.sparkle_surf")
             width, height = self.surf.get_size()
-            self.center = Vec2D( width/2, height/2 )
+            self.center = Vec2D( width//2, height//2 )
 
         def game_tick( self ):
             self.life -= 1

@@ -60,7 +60,7 @@ def pack_images( images ):
 
 
     out_width = min([len(images), 10]) * width
-    out_height = ((len(images)-1) / 10 + 1) * height
+    out_height = ((len(images)-1) // 10 + 1) * height
 
     out_image = Image.new("RGBA", (out_width,out_height))
 

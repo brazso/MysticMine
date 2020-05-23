@@ -115,7 +115,7 @@ class Game:
                 self.game_is_done = True
             elif event.type == KEYDOWN:
                 self.userinput.key.feed_down( event.key )
-                self.userinput.key.feed_char( event.str )
+                self.userinput.key.feed_char( event.unicode)
             elif event.type == KEYUP:
                 self.userinput.key.feed_up( event.key )
             elif event.type == MOUSEBUTTONDOWN:

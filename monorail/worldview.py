@@ -17,7 +17,7 @@ class LevelView:
         self.background = None
 
     def init_background( self ):
-        self.background = gfx.Surface( (800,600) )
+        self.background = gfx.Surface( (1600,1200) )
         frame = frm.Frame( self.background, 0, 0 )
         frame.X_OFFSET, frame.Y_OFFSET = 20, 300
 

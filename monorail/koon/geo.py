@@ -27,6 +27,9 @@ class Vec3D:
     def __truediv__(self, factor):
         return Vec3D( self.x / factor, self.y / factor, self.z / factor )
 
+    def __floordiv__(self, factor):
+        return Vec3D( self.x // factor, self.y // factor, self.z // factor )
+
     def __neg__(self):
         return Vec3D( -self.x, -self.y, -self.z )
 
@@ -77,6 +80,9 @@ class Vec2D:
 
     def __truediv__(self, factor):
         return Vec2D( self.x / factor, self.y / factor )
+
+    def __floordiv__(self, factor):
+        return Vec2D( self.x // factor, self.y // factor )
 
     def __neg__(self):
         return Vec2D( -self.x, -self.y )

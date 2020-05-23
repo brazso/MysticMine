@@ -241,7 +241,7 @@ class TestTrailPosition:
         right.set_neighbor( top, Direction.NORTH )
         right.set_neighbor( bottom, Direction.WEST )
 
-        pos = TrailPosition( top, top.get_length() / 2 )
+        pos = TrailPosition( top, top.get_length() // 2 )
         assert pos.tile == top
         pos -= top.get_length()
         assert pos.tile == right
@@ -269,7 +269,7 @@ class TestTrailPosition:
 
         # Test bounce agains wrong trail
         left.trail.type = Trail.Type.NS
-        pos.set_position( top, top.get_length() / 2 )
+        pos.set_position( top, top.get_length() // 2 )
         if pos.is_reversed():
             pos.reverse_progress()
 
@@ -277,7 +277,7 @@ class TestTrailPosition:
         assert pos.tile == top
 
         right.trail.type = Trail.Type.EW
-        pos.set_position( top, top.get_length() / 2 )
+        pos.set_position( top, top.get_length() // 2 )
         pos -= top.get_length()
         assert pos.tile == top
 
@@ -301,7 +301,7 @@ class TestTrailPosition:
         right.set_neighbor( top, Direction.NORTH )
         right.set_neighbor( bottom, Direction.WEST )
 
-        pos = TrailPosition( top, top.get_length() / 2 )
+        pos = TrailPosition( top, top.get_length() // 2 )
         assert pos.tile == top
         next = pos + top.get_length()
         assert next.tile == left
@@ -309,7 +309,7 @@ class TestTrailPosition:
         pos += top.get_length()
         assert pos == next
 
-        pos = TrailPosition( top, top.get_length() / 2 )
+        pos = TrailPosition( top, top.get_length() // 2 )
         assert pos.tile == top
         next = pos - top.get_length()
         assert next.tile == right

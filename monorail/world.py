@@ -5,6 +5,7 @@ import random
 import pygame
 from pygame.locals import *
 import copy
+import functools
 
 from .tiles import Direction, Tile, TrailPosition, Enterance
 from .player import *
@@ -31,7 +32,8 @@ class Level:
         self.remove_tile( tile.pos.x, tile.pos.y )
         self.tiles.append( tile )
 
-        self.tiles.sort( tilesort )
+        # TODO: check for reverse
+        self.tiles.sort( key=functools.cmp_to_key(tilesort) )
 
         self.update_neighbors();
         self.align_trails();
@@ -179,7 +181,7 @@ class Playfield:
     def get_goldcar_ranking( self ):
         """Return a sorted list of goldcars with same score"""
         single_ranking = self.goldcars[:]
-        single_ranking.sort( lambda a, b: cmp( b.score, a.score ) )
+        single_ranking.sort(key=lambda x: x.score, reverse=True)
 
         ranking = []
         prev_score = None
@@ -400,7 +402,7 @@ class Playfield:
         """Return a random free position, or None if not quickly found"""
         tile = self.level.get_random_flat_tile()
         if tile.pickup is None:
-            pos = TrailPosition(tile, tile.get_length() / 2)
+            pos = TrailPosition(tile, tile.get_length() // 2)
             if self.is_free_position( pos ):
                 return pos
         return None

@@ -192,7 +192,7 @@ class Tile:
             else:
                 return int( (0.5 * math.pi / 2.0) * 1000 )
         else:
-            return 2300 / 2
+            return 2300 // 2
 
     def get_angle( self ):
         if self.type == Tile.Type.FLAT:
@@ -309,6 +309,7 @@ class Tile:
 
 
         if in_dir == out_dir.get_opposite():
+            # TODO: not sure what here
             pos = (in_pos * (self.get_length() - length) + out_pos * length) / self.get_length()
         else:
             interpol = float(length) / float( self.get_length() )

@@ -17,6 +17,8 @@ class GameType (object):
 
     TEST, SINGLE_SEQUENCE, SINGLE_RANDOM, MULTI_RANDOM = list(range( 4))
 
+def _(x): return x # TODO: figure out which internationalization function runs
+
 class SkillLevel:
 
     NAMES = [_("The Best"),
@@ -288,7 +290,7 @@ class Configuration (object):
         self.sound_volume = 1.0
         self.music_volume = 1.0
         self.is_fullscreen = False
-        self.resolution = (800, 600)
+        self.resolution = (1600, 1200)
 
         self.level_progress = 0
         self.unlocked_level = 0

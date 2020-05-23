@@ -827,7 +827,8 @@ class ScreenLevelSelect (Screen):
             self.levelpoints.append( levelpoint )
 
     def _get_point_place( self, i, total ):
-        pos = i * self.lines_length / total
+        # TODO: I am not sure here
+        pos = i * self.lines_length // total
 
         pos_it = 0.0
         prev_pos_it = 0.0
@@ -841,6 +842,7 @@ class ScreenLevelSelect (Screen):
                 pos_it += diff.length()
 
                 if pos_it >= pos:
+                    # TODO: I am not sure what here
                     interpol = (pos - prev_pos_it) / (pos_it - prev_pos_it)
                     diff *= interpol
 
@@ -924,7 +926,7 @@ class ScreenLevelSelect (Screen):
         Screen.draw( self, surface, interpol, time_sec )
         self.levelpoints.draw( surface, interpol, time_sec )
 
-        center = Vec2D( surface.get_width()/2, surface.get_height()/2 )
+        center = Vec2D( surface.get_width()//2, surface.get_height()//2 )
 
         if self.state == ScreenLevelSelect.LEVELS:
             self.info.draw_title( surface, time_sec, (center.x, 410) )
@@ -939,7 +941,7 @@ class ScreenLevelSelect (Screen):
             y = 410
 
             txt = self.fontL.render( _("Unlocking item"), True, (0,0,0) )
-            surface.blit( txt, (center.x - txt.get_width()/2, y) )
+            surface.blit( txt, (center.x - txt.get_width()//2, y) )
 
             self.crate_hud.draw( surface )
 
@@ -1164,8 +1166,8 @@ class ScenarioInfo:
         self.title_font.draw( self.scenario.title, surface, pos, gfx.Font.CENTER )
 
         width = self.title_font.get_width( self.scenario.title )
-        left_pos = Vec2D( pos[0] - width/2 - 25, pos[1] + self.title_sprite_left_y  )
-        right_pos = Vec2D( pos[0] + width/2 + 25, pos[1] + self.title_sprite_right_y  )
+        left_pos = Vec2D( pos[0] - width//2 - 25, pos[1] + self.title_sprite_left_y  )
+        right_pos = Vec2D( pos[0] + width//2 + 25, pos[1] + self.title_sprite_right_y  )
 
         if self.title_sprite_left is not None:
             if self.left_anim_timer is not None:
@@ -1180,7 +1182,7 @@ class ScenarioInfo:
     def draw_opponents( self, surface, time_sec, pos ):
         opponent_count = len(self.game_data.get_quest().get_opponent_iqs())
 
-        pos = Vec2D(pos[0], pos[1]) - Vec2D(35, 17) * ((opponent_count-1)/2)
+        pos = Vec2D(pos[0], pos[1]) - Vec2D(35, 17) * ((opponent_count-1)//2)
 
         for i in range(0, opponent_count):
             offset = Vec2D(i*35, i*17)

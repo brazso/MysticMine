@@ -69,7 +69,7 @@ class GoldCar:
 
         # special case when ghost
         if isinstance( self.modifier, Ghost ):
-            self.speed = (MIN_SPEED + MAX_SPEED) / 2
+            self.speed = (MIN_SPEED + MAX_SPEED) // 2
 
         # update position
         self.pos += self.speed
@@ -124,7 +124,7 @@ class GoldCar:
         # handle gate
         if isinstance( self.pos.tile, RailGate ) and \
            self.pos.tile.is_down and \
-           self.pos.get_distance( TrailPosition(self.pos.tile, self.pos.tile.get_length()/2 )) < GoldCar.COLLIDE_DISTANCE/2:
+           self.pos.get_distance( TrailPosition(self.pos.tile, self.pos.tile.get_length()//2 )) < GoldCar.COLLIDE_DISTANCE//2:
 
             self.speed *= -1
 
@@ -278,7 +278,7 @@ class GoldCar:
                 self.switch_collectibles( self, other )
 
             # Handle too close (in real extreme cases!)
-            elif self.pos.get_distance( other.pos ) < GoldCar.COLLIDE_DISTANCE * 3 / 2 \
+            elif self.pos.get_distance( other.pos ) < GoldCar.COLLIDE_DISTANCE * 3 // 2 \
                  and self.pos.same_direction( other.pos ) \
                  and abs( self.speed - other.speed ) < 10:
                 if self.pos + self.pos.get_distance( other.pos ) == other.pos:
