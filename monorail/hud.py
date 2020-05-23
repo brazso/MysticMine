@@ -2,18 +2,18 @@
 import pygame.font
 import copy
 
-from koon.geo import Vec2D, Rectangle
-import koon.geo as geo
-from koon.res import resman
-import koon.gui as gui
-import koon.gfx as gfx
-from koon.input import Keyboard, Mouse
-import control as ctrl
-import settings
-import menu
-from world import *
-import pickups
-import event
+from .koon.geo import Vec2D, Rectangle
+from .koon import geo
+from .koon.res import resman
+from .koon import gui
+from .koon import gfx
+from .koon.input import Keyboard, Mouse
+from . import control as ctrl
+from . import settings
+from . import menu
+from .world import *
+from . import pickups
+from . import event
 
 class Hud:
     def __init__( self, scenario, ground_control, game_data ):

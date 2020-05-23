@@ -3,9 +3,9 @@ import pygame
 import pygame.draw as draw
 from pygame.locals import *
 
-from geo import Vec2D, Rectangle
-from gfx import *
-from input import *
+from .geo import Vec2D, Rectangle
+from .gfx import *
+from .input import *
 
 
 class GuiState (object):
@@ -522,7 +522,7 @@ class Slider (InteractiveComponent):
         #print self._value
 
     def value_changed( self ):
-        changed = self._old_value <> self._value
+        changed = self._old_value != self._value
         self._old_value = self._value
         return changed
 

@@ -3,13 +3,13 @@ import random
 
 import pygame
 
-from koon.geo import Vec2D
-import koon.geo as geo
-from koon.gfx import SpriteFilm, Font, LoopAnimationTimer, PingPongTimer, Timer
-from koon.res import resman
-import pickups
-import event
-import tiles
+from .koon.geo import Vec2D
+from .koon import geo
+from .koon.gfx import SpriteFilm, Font, LoopAnimationTimer, PingPongTimer, Timer
+from .koon.res import resman
+from . import pickups
+from . import event
+from . import tiles
 
 class PickupView:
     def __init__( self ):

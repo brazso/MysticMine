@@ -3,7 +3,7 @@ from numpy import array
 
 import pygame
 
-from geo import Vec2D, Rectangle
+from .geo import Vec2D, Rectangle
 
 class Surface:
     def __init__( self, param ):
@@ -162,8 +162,8 @@ class SpriteFilm (Sprite):
         return cl
 
 class Font:
-    LEFT, RIGHT, CENTER = range(3)
-    TOP, BOTTOM, MIDDLE = range(3)
+    LEFT, RIGHT, CENTER = list(range(3))
+    TOP, BOTTOM, MIDDLE = list(range(3))
 
     def __init__( self, filename = None, size = 16, color = (0,0,0), \
                   use_antialias = False ):
@@ -186,7 +186,8 @@ class Font:
     def use_antialias( self ):
         return self._use_antialias
 
-    def draw( self, text, surface, (x, y), align = LEFT, valign = TOP ):
+    def draw( self, text, surface, xxx_todo_changeme, align = LEFT, valign = TOP ):
+        (x, y) = xxx_todo_changeme
         textsurf = self.pygame_font.render( text, self._use_antialias,
                                             self.color )
         textsurf = Surface( textsurf )

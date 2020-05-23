@@ -1,11 +1,11 @@
 import random
 
-from koon.input import Mouse
-from tiles import *
-from pickups import *
-import ai
-import world
-from event import Event
+from .koon.input import Mouse
+from .tiles import *
+from .pickups import *
+from . import ai
+from . import world
+from .event import Event
 
 
 class GroundControl:

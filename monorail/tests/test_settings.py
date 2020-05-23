@@ -19,7 +19,7 @@ class TestSettings:
     def test_get_quest( self ):
         game_data = GameData()
 
-        print type(game_data.get_quest())
+        print(type(game_data.get_quest()))
         assert isinstance( game_data.get_quest(), Quest )
 
 

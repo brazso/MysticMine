@@ -1,11 +1,11 @@
 
 import copy
 
-from pickups import *
-from tiles import *
+from .pickups import *
+from .tiles import *
 #from mysticmine import App
-import world
-from event import Event
+from . import world
+from .event import Event
 
 class GoldCar:
     """A Car of Gold!
@@ -75,7 +75,7 @@ class GoldCar:
         self.pos += self.speed
 
         # tile with goldcar on can't be switched
-        if self.pos.tile <> old_tile:
+        if self.pos.tile != old_tile:
             old_tile.trail.may_switch = True
             self.pos.tile.trail.may_switch = False
             self.select_next_switch()
@@ -114,7 +114,7 @@ class GoldCar:
 
         # handle leprechaun
         if isinstance( self.collectible, Leprechaun ):
-            if old_tile <> self.pos.tile and \
+            if old_tile != self.pos.tile and \
                self.score > 0 and \
                old_tile.pickup is None and \
                random.randint(0, 5) == 0:

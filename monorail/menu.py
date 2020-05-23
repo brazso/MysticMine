@@ -5,19 +5,19 @@ import random
 import pygame
 from pygame.locals import *
 
-import koon.app
-from koon.gui import *
-from koon.geo import *
-from koon.res import resman
-import koon.gfx as gfx
-import koon.input as input
+from .koon import app
+from .koon.gui import *
+from .koon.geo import *
+from .koon.res import resman
+from .koon import gfx
+from .koon import input
 
-from settings import GameType, Configuration
-from player import *
-from sndman import SoundManager
-import scenarios
-import control as ctrl
-import pickups
+from .settings import GameType, Configuration
+from .player import *
+from .sndman import SoundManager
+from . import scenarios
+from . import control as ctrl
+from . import pickups
 
 class MonorailMenu:
     def __init__( self, game_data ):
@@ -138,7 +138,7 @@ class CarAnimation:
                     self.offset = parent_offset
 
 
-    STATE_NORMAL, STATE_DOWN, STATE_UP, STATE_CREDITS = range(4)
+    STATE_NORMAL, STATE_DOWN, STATE_UP, STATE_CREDITS = list(range(4))
 
     CREDITS = [line for line in """-= Created by =-
     Koonsolo
@@ -288,7 +288,7 @@ class SingleSwitch:
 
             # Remove non down buttons
             new_timers = {}
-            for key, value in SingleSwitch.esc_timers.items():
+            for key, value in list(SingleSwitch.esc_timers.items()):
                 if key.button in key.dev.down_buttons:
                     new_timers[ key ] = value
             SingleSwitch.esc_timers = new_timers
@@ -298,7 +298,7 @@ class SingleSwitch:
             for dev in indev.devs_no_mouse:
                 for key in dev.down_buttons:
                     btn = input.Button( dev, key )
-                    if SingleSwitch.esc_timers.has_key( btn ):
+                    if btn in SingleSwitch.esc_timers:
                         SingleSwitch.esc_timers[ btn ] += 1
                     else:
                         SingleSwitch.esc_timers[ btn ] = 1
@@ -321,7 +321,7 @@ class SingleSwitch:
         if not SingleSwitch.is_enabled:
             # Remove non down buttons
             new_timers = {}
-            for key, value in SingleSwitch.esc_timers.items():
+            for key, value in list(SingleSwitch.esc_timers.items()):
                 if key.button in key.dev.down_buttons:
                     new_timers[ key ] = value
             SingleSwitch.esc_timers = new_timers
@@ -331,7 +331,7 @@ class SingleSwitch:
             for dev in indev.devs_no_mouse:
                 for key in dev.down_buttons:
                     btn = input.Button( dev, key )
-                    if SingleSwitch.esc_timers.has_key( btn ):
+                    if btn in SingleSwitch.esc_timers:
                         SingleSwitch.esc_timers[ btn ] += 1
                     else:
                         SingleSwitch.esc_timers[ btn ] = 1
@@ -750,7 +750,7 @@ class StagePlayerConfig (Component):
 
 class ScreenLevelSelect (Screen):
 
-    UNLOCK, LEVELS, CONGRATS, EDIT, PLAY, MENU = range(6)
+    UNLOCK, LEVELS, CONGRATS, EDIT, PLAY, MENU = list(range(6))
 
     def __init__( self, game_data ):
         Screen.__init__( self )
@@ -910,12 +910,12 @@ class ScreenLevelSelect (Screen):
             if userinput.mouse.went_down( Mouse.LEFT ):
                 self.lines[-1].append( (userinput.mouse.pos.x,
                                         userinput.mouse.pos.y) )
-                print self.lines[-1][-1]
+                print(self.lines[-1][-1])
             if userinput.key.went_down( K_n ):
-                print "new line"
+                print("new line")
                 self.lines.append([])
             elif userinput.key.went_down( K_p ):
-                print "self.lines =", self.lines
+                print("self.lines =", self.lines)
 
 
     def draw( self, surface, interpol, time_sec ):

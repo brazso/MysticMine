@@ -6,10 +6,10 @@ import pygame
 from pygame.locals import *
 import copy
 
-from tiles import Direction, Tile, TrailPosition, Enterance
-from player import *
-from pickups import *
-from event import *
+from .tiles import Direction, Tile, TrailPosition, Enterance
+from .player import *
+from .pickups import *
+from .event import *
 
 def tilesort( tile1, tile2 ):
     pos1 = -tile1.pos.x + tile1.pos.y
@@ -63,11 +63,11 @@ class Level:
         for direction in Direction.ALL:
             offset = tile.get_neighbor_offset( direction )
             neighbor = None
-            if offset.x <> 0 or offset.y <> 0:
+            if offset.x != 0 or offset.y != 0:
                 neighbor = self.get_tile( tile.pos.x + offset.x, tile.pos.y + offset.y )
                 if neighbor is not None:
                     # only a neighbor if both connect with each other
-                    if (offset * -1) <> neighbor.get_neighbor_offset( direction.get_opposite() ):
+                    if (offset * -1) != neighbor.get_neighbor_offset( direction.get_opposite() ):
                         neighbor = None
 
             tile.set_neighbor( neighbor, direction )
@@ -360,7 +360,7 @@ class Playfield:
             if goldcar.key_went_down():
                 for tile in self.level.tiles:
                     if tile.is_switch() and \
-                               goldcar.switch <> tile:
+                               goldcar.switch != tile:
                         tile.switch_it()
         if isinstance( goldcar.modifier, Ghost ):
             if goldcar.modifier.is_done() \
@@ -369,14 +369,14 @@ class Playfield:
 
     def get_pickup_count( self, pickup_class ):
         """Return the number of pickups in the entire play."""
-        if self.pickup_count.has_key( pickup_class ):
+        if pickup_class in self.pickup_count:
             return self.pickup_count[pickup_class]
         else:
             return 0
 
     def add_pickup_count( self, pickup_class, increment = 1 ):
         """Increment the pickup count"""
-        if self.pickup_count.has_key( pickup_class ):
+        if pickup_class in self.pickup_count:
             self.pickup_count[pickup_class] += increment
         else:
             self.pickup_count[pickup_class] = increment
