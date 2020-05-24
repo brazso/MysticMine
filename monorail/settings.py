@@ -1,6 +1,7 @@
 
 from pickle import *
 import os.path
+from gettext import gettext as _
 
 from pygame.locals import *
 
@@ -16,8 +17,6 @@ class GameType (object):
     """Enum of game types"""
 
     TEST, SINGLE_SEQUENCE, SINGLE_RANDOM, MULTI_RANDOM = list(range( 4))
-
-def _(x): return x # TODO: figure out which internationalization function runs
 
 class SkillLevel:
 

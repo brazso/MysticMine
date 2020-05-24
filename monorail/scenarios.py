@@ -3,6 +3,7 @@ import random
 from pickle import *
 import os
 import gettext
+from gettext import gettext as _
 
 from .koon.geo import *
 
@@ -22,8 +23,6 @@ from .tiles import *
 #lang.install()
 #gettext.lang = lang
 ## End localisation
-
-def _(x): return x
 
 TIMEOUT = 60
 

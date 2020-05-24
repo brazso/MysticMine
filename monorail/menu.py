@@ -6,6 +6,7 @@ import pygame
 from pygame.locals import *
 
 from .koon import app
+from . import koon
 from .koon.gui import *
 from .koon.geo import *
 from .koon.res import resman
