@@ -289,7 +289,7 @@ class Configuration (object):
         self.sound_volume = 1.0
         self.music_volume = 1.0
         self.is_fullscreen = False
-        self.resolution = (1600, 1200)
+        self.resolution = (800, 600)
 
         self.level_progress = 0
         self.unlocked_level = 0
