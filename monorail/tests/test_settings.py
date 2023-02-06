@@ -3,28 +3,23 @@ import os
 
 from monorail.settings import *
 from monorail.scenarios import *
-from monorail.koon.input import UserInput
-import pygame
 
 
 class TestSettings:
 
     def test_init( self ):
-        pygame.init()
-        game_data = GameData(UserInput())
+        game_data = GameData()
 
     def test_is_single_player( self ):
-        pygame.init()
-        game_data = GameData(UserInput())
+        game_data = GameData()
 
         assert game_data.is_single_player() == True or \
                game_data.is_single_player() == False
 
     def test_get_quest( self ):
-        pygame.init()
-        game_data = GameData(UserInput())
+        game_data = GameData()
 
-        print(type(game_data.get_quest()))
+        print type(game_data.get_quest())
         assert isinstance( game_data.get_quest(), Quest )
 
 
