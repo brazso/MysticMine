@@ -338,7 +338,6 @@ class MonorailGame:
                 elif self.ingame_menu.should_quit:
                     self.music_man.stop()
                     self.state = MonorailGame.STATE_QUIT
-                    pygame.quit()
                 elif self.ingame_menu.to_next_level:
                     self.music_man.stop()
                     self.state = MonorailGame.STATE_DONE

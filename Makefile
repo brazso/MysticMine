@@ -1,7 +1,7 @@
 # (C)2012 Lukas Czerner <lczerner@loguj.cz>
 
 all:
-	rm -f monorail/ai.c monorail/ai.so
+	rm -f monorail/ai.c monorail/ai.so monorail/ai.*.so
 	rm -rf monorail/data
 	@python3 setup.py build_ext --inplace
 	ln -s $(CURDIR)/data/800x600/ monorail/data
@@ -20,7 +20,7 @@ help:
 clean:
 	@python3 setup.py clean
 	rm -f MANIFEST
-	rm -f monorail/ai.c monorail/ai.so
+	rm -f monorail/ai.c monorail/ai.so monorail/ai.*.so
 	rm -rf monorail/data
 	rm -rf assets/tmp
 	find . -\( -name "*.pyc" -o -name '*.pyo' -o -name "*~" -\) -delete

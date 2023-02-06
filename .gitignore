@@ -1,5 +1,9 @@
 build/
 dist/
 *.pyc
+*.pyo
 *.swp
 *.swo
+*.c
+*.so
+monorail/data

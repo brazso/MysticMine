@@ -61,6 +61,9 @@ Requirements
 - cython
 - Blender (only to regenerate sprites)
 
+How to Install Requirements (on Ubuntu Linux)
+---------------------------------------------
+sudo apt install python3 python3-pygame python3-numpy cython3 blender
 
 How to Run the Game
 -------------------
