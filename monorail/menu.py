@@ -166,8 +166,9 @@ class CarAnimation:
     
     -= Updated to Python3 =-
     Michal Nánási
+    Iwan Gabovitch
     Zsolt Branyiczky
-
+    
     -= Tools Used =-
     Python
     Pygame
