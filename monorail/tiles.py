@@ -309,10 +309,9 @@ class Tile:
 
 
         if in_dir == out_dir.get_opposite():
-            # TODO: not sure what here
             pos = (in_pos * (self.get_length() - length) + out_pos * length) / self.get_length()
         else:
-            interpol = float(length) / float( self.get_length() )
+            interpol = length / self.get_length()
             pos = in_pos - in_pos * math.sin( math.pi * interpol / 2.0 )
             pos += out_pos * (1.0 - math.cos( math.pi * interpol / 2.0))
 

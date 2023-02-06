@@ -256,8 +256,8 @@ class GoldCar:
                     other.pos.reverse_progress()
                 diff = GoldCar.COLLIDE_DISTANCE - self.pos.get_distance( other.pos )
 
-                proportion1 = float(self.speed) / (self.speed + other.speed)
-                proportion2 = float(other.speed) / (self.speed + other.speed)
+                proportion1 = self.speed / (self.speed + other.speed)
+                proportion2 = other.speed / (self.speed + other.speed)
 
                 if not self.pos.same_direction( other.pos ):
                     self.pos += int(diff * proportion1)

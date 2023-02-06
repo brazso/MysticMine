@@ -90,7 +90,7 @@ class Game:
 
                 # render
                 time_sec = pygame.time.get_ticks() * 0.001
-                interpol = 1 - ((next_game_tick - pygame.time.get_ticks()) / float(GAMETICKS))
+                interpol = 1 - ((next_game_tick - pygame.time.get_ticks()) / GAMETICKS)
                 self.render(pygame.display.get_surface(), interpol, time_sec )
                 pygame.display.flip()
 

@@ -163,6 +163,10 @@ class CarAnimation:
     Michael Van Loock
     Nick Verhaert
     Erik Wollebrants
+    
+    -= Updated to Python3 =-
+    Michal Nánási
+    Zsolt Branyiczky
 
     -= Tools Used =-
     Python
@@ -571,7 +575,7 @@ class AccessDialog (Dialog):
         self.add_subcomponent( self.close_btn )
 
         self.speed_slider.set_value( self.config.game_speed )
-        self.scan_slider.set_value( 1.0 - ((self.config.scan_speed - 20) / float(40)) )
+        self.scan_slider.set_value( 1.0 - ((self.config.scan_speed - 20) / 40) )
 
         self.update_neighbors()
 
@@ -828,8 +832,7 @@ class ScreenLevelSelect (Screen):
             self.levelpoints.append( levelpoint )
 
     def _get_point_place( self, i, total ):
-        # TODO: I am not sure here
-        pos = i * self.lines_length // total
+        pos = i * self.lines_length / total
 
         pos_it = 0.0
         prev_pos_it = 0.0
@@ -843,7 +846,6 @@ class ScreenLevelSelect (Screen):
                 pos_it += diff.length()
 
                 if pos_it >= pos:
-                    # TODO: I am not sure what here
                     interpol = (pos - prev_pos_it) / (pos_it - prev_pos_it)
                     diff *= interpol
 

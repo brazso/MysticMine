@@ -499,7 +499,7 @@ class Slider (InteractiveComponent):
         # Check if mouse is down on slider
         if userinput.mouse.is_down( Mouse.LEFT ) and \
                (self._is_sliding or self.place.contains( userinput.mouse.pos )):
-            self._value = float(userinput.mouse.pos.x - self.place.pos.x) \
+            self._value = (userinput.mouse.pos.x - self.place.pos.x) \
                           / (self.place.get_right() - self.place.pos.x )
             self._value = min(1.0, max(0.0, self._value))
             self._is_sliding = True
@@ -568,7 +568,7 @@ class ImageSlider (Slider):
                (self._is_sliding or self.place.contains( userinput.mouse.pos ))):
 ##               or \
 ##               (self.button is not None and self.button.is_down):
-            self._value = float(userinput.mouse.pos.x - self.place.pos.x) \
+            self._value = (userinput.mouse.pos.x - self.place.pos.x) \
                           / (self.place.get_right() - self.place.pos.x )
             self._value = min(1.0, max(0.0, self._value))
             self._is_sliding = True

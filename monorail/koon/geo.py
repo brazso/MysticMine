@@ -162,4 +162,4 @@ class Rectangle:
 
 
 def lin_ipol( value, a, b, begin = 0.0, end = 1.0 ):
-    return a + (float(value - begin) * float(b - a)) / float(end - begin)
+    return a + ((value - begin) * (b - a)) / (end - begin)

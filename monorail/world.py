@@ -32,7 +32,6 @@ class Level:
         self.remove_tile( tile.pos.x, tile.pos.y )
         self.tiles.append( tile )
 
-        # TODO: check for reverse
         self.tiles.sort( key=functools.cmp_to_key(tilesort) )
 
         self.update_neighbors();

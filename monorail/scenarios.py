@@ -825,21 +825,21 @@ class Quest:
         if not scenario.ontime:
             if self.get_scenario().timeout is not None:
                 if scenario.has_won():
-                    return float(self.get_scenario().timeout) / scenario.completed_time
+                    return self.get_scenario().timeout / scenario.completed_time
                 else:
                     score = scenario.playfield.goldcars[0].score
-                    estim_time = (float(scenario.completed_time) / score) * scenario.coin_start_cnt
-                    return float(self.get_scenario().timeout) / estim_time
+                    estim_time = (scenario.completed_time / score) * scenario.coin_start_cnt
+                    return self.get_scenario().timeout / estim_time
             else:
                 return None
         else:
             if self.get_scenario().goal is not None:
-                return float(scenario.playfield.goldcars[0].score) / self.get_scenario().goal
+                return scenario.playfield.goldcars[0].score / self.get_scenario().goal
             elif len(scenario.playfield.goldcars) > 1:
                 best_score = 1
                 for car in scenario.playfield.goldcars[1:]:
                     best_score = max([best_score, car.score])
-                return float(scenario.playfield.goldcars[0].score) / best_score
+                return scenario.playfield.goldcars[0].score / best_score
             else:
                 return None
 
@@ -1312,7 +1312,7 @@ class QuestManager:
     def _set_ais( self, quest, stupid, smart ):
         for i in range(0, len(quest.opponent_iqs_list)):
             for j in range(0, len(quest.opponent_iqs_list[i])):
-                interpol = float(i) / len(quest.opponent_iqs_list)
+                interpol = i / len(quest.opponent_iqs_list)
                 quest.opponent_iqs_list[i][j] = stupid + ((smart - stupid) * interpol)
 
 def clean_stats( stats ):
