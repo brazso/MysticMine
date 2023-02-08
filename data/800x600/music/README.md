@@ -1,15 +1,13 @@
-Because the music of the original game were bought under a royalty 
-free license, and so they cannot be distributed here. However a proper replacement 
+Because the music of the original game was bought under a royalty 
+free license, they cannot be distributed here. However a proper replacement 
 for these music files were added to the project with CCBY3/CCBY3/CCBYSA3 
 licenses. This includes:
 
-breakneck_loop.ogg -> Corncob
-http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100565
+breakneck_loop (Corncob) - ccby3 by Kevin MacLeod http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100565
 
-heartland.ogg -> Jenny's Theme
-http://freemusicarchive.org/music/Jason_Shaw/Audionautix_Acoustic/JENNYS_THEME___________________-45
+heartland (Jenny's Theme) - ccby3 by Jason Shaw http://freemusicarchive.org/music/Jason_Shaw/Audionautix_Acoustic/JENNYS_THEME___________________-45
 
-truck_stop_loop.ogg -> River Valley Breakdown
-http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300032
+truck_stop_loop (River Valley Breakdown) - ccby3 by Kevin MacLeod http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300032
 
-If you own the original game, you may overwrite the music files in this folder. 
+If you own the original purchased game, you may overwrite the music files in this 
+folder with the original ones.
