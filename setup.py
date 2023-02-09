@@ -55,6 +55,6 @@ setup( name='MysticMine',
     requires=[
         "pygame",
         "numpy",
-        "pyrex",
+        "cython",
     ],
 )

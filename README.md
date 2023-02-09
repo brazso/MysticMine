@@ -92,6 +92,16 @@ of MysticMine sources:
 - Run 'make rebuild-all'
 
 
+Win32 Installer Creation Instructions
+-------------------------------------
+You may create windows installer from linux. At first install Nullsoft 
+Scriptable Install System (NSIS).
+sudo apt install nsis
+Install pynsist module which is a tool to build Windows installers for your 
+Python applications. (For more info see https://github.com/takluyver/pynsist)
+pip3 install pynsist
+
+
 License (except audio files)
 ----------------------------
 
