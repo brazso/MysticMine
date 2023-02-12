@@ -100,7 +100,10 @@ sudo apt install nsis
 Install pynsist module which is a tool to build Windows installers for your 
 Python applications. (For more info see https://github.com/takluyver/pynsist)
 pip3 install pynsist
-
+We need Mingw Cross-Compiler to build monorail.ai extension to win32 platform.
+sudo apt install mingw-w64
+Finally run the installer.
+pynsist installer.cfg
 
 License (except audio files)
 ----------------------------

@@ -3,7 +3,8 @@
 all:
 	rm -f monorail/ai.c monorail/ai.so monorail/ai.*.so
 	rm -rf monorail/data
-	@python3 setup.py build_ext --inplace
+#	@python3 setup.py build_ext --inplace
+	@python3 setup.py build_ext --inplace --compiler=mingw32
 	ln -s $(CURDIR)/data/800x600/ monorail/data
 
 help:
@@ -27,6 +28,10 @@ clean:
 
 git-clean:
 	git clean -f
+
+distclean: clean
+	rm -rf dist 
+	rm -rf MysticMine.egg-info
 
 install:
 	@python3 setup.py install
