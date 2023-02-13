@@ -102,6 +102,11 @@ Python applications. (For more info see https://github.com/takluyver/pynsist)
 pip3 install pynsist
 We need Mingw Cross-Compiler to build monorail.ai extension to win32 platform.
 sudo apt install mingw-w64
+Unfortunately mingw-w64 is unsupported by python distutils, so the cross 
+compiling cannot be done from the Makefile using
+@python3 setup.py build_ext --inplace --compiler=mingw64
+See https://stackoverflow.com/a/70474888 for more info.
+...
 Finally run the installer.
 pynsist installer.cfg
 

@@ -1,7 +1,12 @@
-from setuptools import Extension, setup
+from distutils.core import Extension, setup
+from distutils.command.install import INSTALL_SCHEMES
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 import os
+
+# http://stackoverflow.com/questions/1612733/including-non-python-files-with-setup-py
+for scheme in INSTALL_SCHEMES.values():
+    scheme['data'] = scheme['purelib']
 
 def find_data_files(srcdir, *wildcard):
     file_list = []

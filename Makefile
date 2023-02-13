@@ -3,8 +3,8 @@
 all:
 	rm -f monorail/ai.c monorail/ai.so monorail/ai.*.so
 	rm -rf monorail/data
-#	@python3 setup.py build_ext --inplace
-	@python3 setup.py build_ext --inplace --compiler=mingw32
+	@python3 setup.py build_ext --inplace
+#	@python3 setup.py build_ext --inplace --compiler=mingw64 # unsupported by distutils
 	ln -s $(CURDIR)/data/800x600/ monorail/data
 
 help:
