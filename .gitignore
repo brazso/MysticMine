@@ -2,8 +2,10 @@ build/
 dist/
 *.pyc
 *.pyo
+*.pyd
 *.swp
 *.swo
 *.c
 *.so
+*.log
 monorail/data
