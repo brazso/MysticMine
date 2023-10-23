@@ -5,6 +5,8 @@ from gettext import gettext as _
 
 from pygame.locals import *
 
+import functools
+
 from .koon import input
 
 from .scenarios import *
@@ -257,10 +259,15 @@ class GameData:
 
             score -= len( goldcars )
 
+    @staticmethod
+    def compare(x, y) -> int:
+        if x==y: return 0
+        return 1 if x > y else -1
+    
     def get_total_ranking( self ):
         """Return a sorted list of goldcars with same score"""
         single_ranking = list(self.total_scores.values())[:]
-        single_ranking.sort( lambda a, b: cmp( b.score, a.score ) )
+        single_ranking.sort(key=functools.cmp_to_key(lambda a, b: GameData.compare( b.score, a.score )))
 
         ranking = []
         prev_score = None
