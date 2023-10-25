@@ -152,9 +152,17 @@ class CarAnimation:
     Koen Witters
 
     -= Music =-
-    Jeremy Sherman
-    Heartland
-
+    Kevin MacLeod
+    Jason Shaw
+    
+    -= Sound =-
+    Agaxly
+    Falcospizaetus
+    Iwan Gabovitch
+    Morgan Purkis
+    Slamaxu
+    Yle
+    
     -= Thanks to =-
     Roel Guldentops
     Leen Vander Kuylen
@@ -166,9 +174,8 @@ class CarAnimation:
     
     -= Updated to Python3 =-
     Michal Nánási
-    Iwan Gabovitch
     Zsolt Branyiczky
-    
+
     -= Tools Used =-
     Python
     Pygame
