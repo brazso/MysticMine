@@ -1,7 +1,6 @@
 Because the sounds of the original game were bought under a royalty 
 free license, they cannot be distributed here. However a proper replacement 
-for these sound files were added to the project with CCBY3/CCBY3/CCBYSA3 
-licenses. This includes:
+for these sound files were added to the project with CC0/CCBY3 licenses. This includes:
 
 button, button2 - ccby3 by Iwan Gabovitch edited http://www.freesound.org/people/qubodup/sounds/187853/
 buzzer - ccby3 by Iwan Gabovitch

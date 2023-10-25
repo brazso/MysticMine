@@ -1,7 +1,7 @@
 Because the music of the original game was bought under a royalty 
 free license, they cannot be distributed here. However a proper replacement 
-for these music files were added to the project with CCBY3/CCBY3/CCBYSA3 
-licenses. This includes:
+for these music files were added to the project with CCBY3 
+license. This includes:
 
 breakneck_loop (Corncob) - ccby3 by Kevin MacLeod http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100565
 
