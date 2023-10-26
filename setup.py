@@ -1,6 +1,7 @@
 from distutils.core import Extension, setup
 from distutils.command.install import INSTALL_SCHEMES
-from Pyrex.Distutils import build_ext
+from Cython.Distutils import build_ext
+from Cython.Build import cythonize
 import os
 
 # http://stackoverflow.com/questions/1612733/including-non-python-files-with-setup-py
@@ -21,6 +22,10 @@ levels = find_data_files('data/800x600/levels/', '.lvl')
 music = find_data_files('data/800x600/music/', '.ogg')
 snd = find_data_files('data/800x600/snd/', '.wav')
 
+extensions=[
+    Extension("monorail.ai", ["monorail/ai.pyx"])
+]
+    
 setup( name='MysticMine',
     version='1.2.0',
     author='koonsolo',
@@ -45,13 +50,11 @@ setup( name='MysticMine',
                 ('monorail/data/music',music),
                 ('monorail/data/snd',snd),
     ],
-    ext_modules=[
-        Extension("monorail.ai", ["monorail/ai.pyx"])
-    ],
+    ext_modules=cythonize(extensions, language_level = "2"),
     cmdclass={'build_ext': build_ext},
     requires=[
         "pygame",
         "numpy",
-        "pyrex",
+        "cython",
     ],
 )

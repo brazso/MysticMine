@@ -1,9 +1,16 @@
 # (C)2012 Lukas Czerner <lczerner@loguj.cz>
 
+PY_WIN_VERSION = $(lastword $(shell python3 --version))
+# overwritten, e.g. 3.10.12 has no installable win version
+PY_WIN_VERSION = 3.10.11
+# e.g. 3.10
+PY_WIN_VERSION_WO_PATCH = $(shell echo $(PY_WIN_VERSION) | sed 's/\.[0-9]\+$$//')
+# e.g. 310
+PY_WIN_VERSION_WO_PATCH_DOT = $(shell echo $(PY_WIN_VERSION_WO_PATCH) | tr -d '.')
+
 all:
-	rm -f monorail/ai.c monorail/ai.so
-	rm -rf monorail/data
-	@python2 setup.py build_ext --inplace
+	@python3 setup.py build_ext --inplace
+	rm -f monorail/data
 	ln -s $(CURDIR)/data/800x600/ monorail/data
 
 help:
@@ -16,24 +23,53 @@ help:
 	@echo " install                 install program on current system"
 	@echo " source                  create source tarball"
 	@echo " rebuild-all             rebuild everything including all assets"
+	@echo " import-win32            import cross python win32 files"
+	@echo " build-win32             cross build to win32 (depends on import-win32)"
+	@echo " install-win32           make win32 install exe using pynsist (depends on build-win32)"
+	@echo " win32                   run all *-win32 targets in proper order"
 
 clean:
-	@python2 setup.py clean
+	@python3 setup.py clean
+	rm -rf build/temp.win32-x86_64-${PY_WIN_VERSION_WO_PATCH}/monorail
 	rm -f MANIFEST
-	rm -f monorail/ai.c monorail/ai.so
-	rm -rf monorail/data
+	rm -f monorail/ai.c monorail/ai.so monorail/ai.*.so monorail/ai.pyd
+	rm -f monorail/data
 	rm -rf assets/tmp
 	find . -\( -name "*.pyc" -o -name '*.pyo' -o -name "*~" -\) -delete
 
 git-clean:
 	git clean -f
 
-install:
-	@python2 setup.py install
+distclean: clean
+	rm -rf dist
+	rm -rf build
+	rm -rf MysticMine.egg-info
 
+install:
+	@python3 setup.py install
+	
 source: clean
-	@python2 setup.py sdist
+	@python3 setup.py sdist
 
 rebuild-all: clean
-	@python2 setup.py build_ext --inplace
-	@python2 build.py
+	@python3 setup.py build_ext --inplace
+	@python3 build.py
+
+import-win32:
+	mkdir -p build
+	wget -q https://github.com/brazso/python-cross-files/raw/main/python-${PY_WIN_VERSION}-amd64-cross.zip -O build/python-${PY_WIN_VERSION}-amd64-cross.zip
+	unzip -q -o build/python-${PY_WIN_VERSION}-amd64-cross.zip -d build
+	rm -f build/python-${PY_WIN_VERSION}-amd64-cross.zip
+
+build-win32:
+	cython3 -2 monorail/ai.pyx
+	mkdir -p build/temp.win32-x86_64-${PY_WIN_VERSION_WO_PATCH}/monorail
+	x86_64-w64-mingw32-gcc -c monorail/ai.c -o build/temp.win32-x86_64-${PY_WIN_VERSION_WO_PATCH}/monorail/ai.o -I build/Python${PY_WIN_VERSION_WO_PATCH_DOT}/include -DMS_WIN64 -O2
+	x86_64-w64-mingw32-gcc -shared build/temp.win32-x86_64-${PY_WIN_VERSION_WO_PATCH}/monorail/ai.o -o monorail/ai.pyd -L build/Python${PY_WIN_VERSION_WO_PATCH_DOT} -lpython${PY_WIN_VERSION_WO_PATCH_DOT}
+	rm -f monorail/data
+	ln -s $(CURDIR)/data/800x600/ monorail/data
+
+install-win32:
+	pynsist installer.cfg
+
+win32: import-win32 build-win32 install-win32

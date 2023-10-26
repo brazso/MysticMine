@@ -1,10 +1,10 @@
 
-from koon.geo import Vec2D
-from koon.res import resman
-from koon.gfx import Timer, Font
+from .koon.geo import Vec2D
+from .koon.res import resman
+from .koon.gfx import Timer, Font
 
-from tiles import *
-from pickups import Oiler, Ghost
+from .tiles import *
+from .pickups import Oiler, Ghost
 
 
 class GoldCarView (object):
@@ -44,7 +44,7 @@ class GoldCarView (object):
             if( in_dir  == Direction.WEST and out_dir == Direction.NORTH ): in_sprite = 12
             if( out_dir == Direction.WEST and in_dir  == Direction.NORTH ): out_sprite = 12
 
-            interpol = float(abs(pos.progress)) / float(pos.tile.get_length())
+            interpol = abs(pos.progress) / pos.tile.get_length()
 
             self.sprite.nr = int(in_sprite * (1.0 - interpol) + out_sprite * interpol) % 12
 
@@ -85,7 +85,7 @@ class GoldCarView (object):
             diff = 1.0 / (len(self.motionblur)+1)
             alpha = 0.0 + diff*2
             for ghost in self.motionblur:
-                if not self.alpha_surfs.has_key( alpha ):
+                if alpha not in self.alpha_surfs:
                     self.alpha_surfs[alpha] = self.sprite.surface.get_blended( alpha )
 
                 ghost[1].surface = self.alpha_surfs[alpha]

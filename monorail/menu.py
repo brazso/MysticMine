@@ -5,19 +5,20 @@ import random
 import pygame
 from pygame.locals import *
 
-import koon.app
-from koon.gui import *
-from koon.geo import *
-from koon.res import resman
-import koon.gfx as gfx
-import koon.input as input
+from .koon import app
+from . import koon
+from .koon.gui import *
+from .koon.geo import *
+from .koon.res import resman
+from .koon import gfx
+from .koon import input
 
-from settings import GameType, Configuration
-from player import *
-from sndman import SoundManager
-import scenarios
-import control as ctrl
-import pickups
+from .settings import GameType, Configuration
+from .player import *
+from .sndman import SoundManager
+from . import scenarios
+from . import control as ctrl
+from . import pickups
 
 class MonorailMenu:
     def __init__( self, game_data ):
@@ -138,7 +139,7 @@ class CarAnimation:
                     self.offset = parent_offset
 
 
-    STATE_NORMAL, STATE_DOWN, STATE_UP, STATE_CREDITS = range(4)
+    STATE_NORMAL, STATE_DOWN, STATE_UP, STATE_CREDITS = list(range(4))
 
     CREDITS = [line for line in """-= Created by =-
     Koonsolo
@@ -151,9 +152,17 @@ class CarAnimation:
     Koen Witters
 
     -= Music =-
-    Jeremy Sherman
-    Heartland
-
+    Kevin MacLeod
+    Jason Shaw
+    
+    -= Sound =-
+    Agaxly
+    Falcospizaetus
+    Iwan Gabovitch
+    Morgan Purkis
+    Slamaxu
+    Yle
+    
     -= Thanks to =-
     Roel Guldentops
     Leen Vander Kuylen
@@ -162,6 +171,10 @@ class CarAnimation:
     Michael Van Loock
     Nick Verhaert
     Erik Wollebrants
+    
+    -= Updated to Python3 =-
+    Michal Nánási
+    Zsolt Branyiczky
 
     -= Tools Used =-
     Python
@@ -288,7 +301,7 @@ class SingleSwitch:
 
             # Remove non down buttons
             new_timers = {}
-            for key, value in SingleSwitch.esc_timers.items():
+            for key, value in list(SingleSwitch.esc_timers.items()):
                 if key.button in key.dev.down_buttons:
                     new_timers[ key ] = value
             SingleSwitch.esc_timers = new_timers
@@ -298,7 +311,7 @@ class SingleSwitch:
             for dev in indev.devs_no_mouse:
                 for key in dev.down_buttons:
                     btn = input.Button( dev, key )
-                    if SingleSwitch.esc_timers.has_key( btn ):
+                    if btn in SingleSwitch.esc_timers:
                         SingleSwitch.esc_timers[ btn ] += 1
                     else:
                         SingleSwitch.esc_timers[ btn ] = 1
@@ -321,7 +334,7 @@ class SingleSwitch:
         if not SingleSwitch.is_enabled:
             # Remove non down buttons
             new_timers = {}
-            for key, value in SingleSwitch.esc_timers.items():
+            for key, value in list(SingleSwitch.esc_timers.items()):
                 if key.button in key.dev.down_buttons:
                     new_timers[ key ] = value
             SingleSwitch.esc_timers = new_timers
@@ -331,7 +344,7 @@ class SingleSwitch:
             for dev in indev.devs_no_mouse:
                 for key in dev.down_buttons:
                     btn = input.Button( dev, key )
-                    if SingleSwitch.esc_timers.has_key( btn ):
+                    if btn in SingleSwitch.esc_timers:
                         SingleSwitch.esc_timers[ btn ] += 1
                     else:
                         SingleSwitch.esc_timers[ btn ] = 1
@@ -570,7 +583,7 @@ class AccessDialog (Dialog):
         self.add_subcomponent( self.close_btn )
 
         self.speed_slider.set_value( self.config.game_speed )
-        self.scan_slider.set_value( 1.0 - ((self.config.scan_speed - 20) / float(40)) )
+        self.scan_slider.set_value( 1.0 - ((self.config.scan_speed - 20) / 40) )
 
         self.update_neighbors()
 
@@ -750,7 +763,7 @@ class StagePlayerConfig (Component):
 
 class ScreenLevelSelect (Screen):
 
-    UNLOCK, LEVELS, CONGRATS, EDIT, PLAY, MENU = range(6)
+    UNLOCK, LEVELS, CONGRATS, EDIT, PLAY, MENU = list(range(6))
 
     def __init__( self, game_data ):
         Screen.__init__( self )
@@ -910,12 +923,12 @@ class ScreenLevelSelect (Screen):
             if userinput.mouse.went_down( Mouse.LEFT ):
                 self.lines[-1].append( (userinput.mouse.pos.x,
                                         userinput.mouse.pos.y) )
-                print self.lines[-1][-1]
+                print(self.lines[-1][-1])
             if userinput.key.went_down( K_n ):
-                print "new line"
+                print("new line")
                 self.lines.append([])
             elif userinput.key.went_down( K_p ):
-                print "self.lines =", self.lines
+                print("self.lines =", self.lines)
 
 
     def draw( self, surface, interpol, time_sec ):
@@ -924,7 +937,7 @@ class ScreenLevelSelect (Screen):
         Screen.draw( self, surface, interpol, time_sec )
         self.levelpoints.draw( surface, interpol, time_sec )
 
-        center = Vec2D( surface.get_width()/2, surface.get_height()/2 )
+        center = Vec2D( surface.get_width()//2, surface.get_height()//2 )
 
         if self.state == ScreenLevelSelect.LEVELS:
             self.info.draw_title( surface, time_sec, (center.x, 410) )
@@ -939,7 +952,7 @@ class ScreenLevelSelect (Screen):
             y = 410
 
             txt = self.fontL.render( _("Unlocking item"), True, (0,0,0) )
-            surface.blit( txt, (center.x - txt.get_width()/2, y) )
+            surface.blit( txt, (center.x - txt.get_width()//2, y) )
 
             self.crate_hud.draw( surface )
 
@@ -1164,8 +1177,8 @@ class ScenarioInfo:
         self.title_font.draw( self.scenario.title, surface, pos, gfx.Font.CENTER )
 
         width = self.title_font.get_width( self.scenario.title )
-        left_pos = Vec2D( pos[0] - width/2 - 25, pos[1] + self.title_sprite_left_y  )
-        right_pos = Vec2D( pos[0] + width/2 + 25, pos[1] + self.title_sprite_right_y  )
+        left_pos = Vec2D( pos[0] - width//2 - 25, pos[1] + self.title_sprite_left_y  )
+        right_pos = Vec2D( pos[0] + width//2 + 25, pos[1] + self.title_sprite_right_y  )
 
         if self.title_sprite_left is not None:
             if self.left_anim_timer is not None:
@@ -1180,7 +1193,7 @@ class ScenarioInfo:
     def draw_opponents( self, surface, time_sec, pos ):
         opponent_count = len(self.game_data.get_quest().get_opponent_iqs())
 
-        pos = Vec2D(pos[0], pos[1]) - Vec2D(35, 17) * ((opponent_count-1)/2)
+        pos = Vec2D(pos[0], pos[1]) - Vec2D(35, 17) * ((opponent_count-1)//2)
 
         for i in range(0, opponent_count):
             offset = Vec2D(i*35, i*17)

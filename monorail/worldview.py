@@ -1,13 +1,13 @@
 
 import random
 
-import koon.gfx as gfx
-import koon.geo as geo
-from koon.res import resman
+from .koon import gfx
+from .koon import geo
+from .koon.res import resman
 
-from playerview import GoldCarView
-import frame as frm
-import tiles
+from .playerview import GoldCarView
+from . import frame as frm
+from . import tiles
 
 class LevelView:
 
